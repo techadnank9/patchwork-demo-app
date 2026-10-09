@@ -8,5 +8,5 @@ app = Flask(__name__)
 @app.route("/thumb")
 def thumb():
     name = request.args.get("file", "")
-    out = subprocess.check_output("convert uploads/" + name + " -resize 100x100 thumb.png", shell=True)
+    out = subprocess.check_output(["convert", "uploads/" + name, "-resize", "100x100", "thumb.png"])
     return out
