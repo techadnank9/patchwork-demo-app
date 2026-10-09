@@ -13,5 +13,5 @@ def get_db():
 def search():
     term = request.args.get("q", "")
     conn = get_db()
-    rows = conn.execute("SELECT * FROM items WHERE name LIKE '%" + term + "%'").fetchall()
+    rows = conn.execute("SELECT * FROM items WHERE name LIKE ?", ("%" + term + "%",)).fetchall()
     return jsonify([list(r) for r in rows])
